@@ -3,6 +3,7 @@
 //! Each function in this module is easy to read in order to enable extending a
 //! widget if its defaults don't work for you.
 
+#[cfg(feature = "text")]
 use std::borrow::Cow;
 
 use yakui_core::geometry::{Color, Constraints, Dim2, Vec2};
@@ -11,14 +12,16 @@ use yakui_core::widget::PaintContext;
 use yakui_core::{Alignment, ManagedTextureId, Pivot, Response, TextureId};
 
 use crate::widgets::{
-    Align, AlignResponse, Button, ButtonResponse, Canvas, CanvasResponse, Checkbox,
-    CheckboxResponse, Circle, CircleResponse, ColoredBox, ColoredBoxResponse, ConstrainedBox,
-    ConstrainedBoxResponse, CountGrid, Divider, DividerResponse, Draggable, DraggableResponse,
-    Flexible, FlexibleResponse, Image, ImageResponse, List, ListResponse, MaxWidth,
-    MaxWidthResponse, NineSlice, Offset, OffsetResponse, Opaque, OpaqueResponse, Pad, PadResponse,
-    Reflow, ReflowResponse, Scrollable, ScrollableResponse, Slider, SliderResponse, Spacer, Stack,
-    StackResponse, State, StateResponse, Text, TextBox, TextBoxResponse, TextResponse, Trap,
+    Align, AlignResponse, Canvas, CanvasResponse, Checkbox, CheckboxResponse, Circle,
+    CircleResponse, ColoredBox, ColoredBoxResponse, ConstrainedBox, ConstrainedBoxResponse,
+    CountGrid, Divider, DividerResponse, Draggable, DraggableResponse, Flexible, FlexibleResponse,
+    Image, ImageResponse, List, ListResponse, MaxWidth, MaxWidthResponse, NineSlice, Offset,
+    OffsetResponse, Opaque, OpaqueResponse, Pad, PadResponse, Reflow, ReflowResponse, Scrollable,
+    ScrollableResponse, Slider, SliderResponse, Spacer, Stack, StackResponse, State, StateResponse,
+    Trap,
 };
+#[cfg(feature = "text")]
+use crate::widgets::{Button, ButtonResponse, Text, TextBox, TextBoxResponse, TextResponse};
 
 /// See [List].
 #[track_caller]
@@ -56,6 +59,7 @@ pub fn align<F: FnOnce()>(alignment: Alignment, children: F) -> Response<AlignRe
     Align::new(alignment).show(children)
 }
 
+#[cfg(feature = "text")]
 /// See [Button].
 #[track_caller]
 pub fn button<S: Into<Cow<'static, str>>>(text: S) -> Response<ButtonResponse> {
@@ -99,18 +103,21 @@ pub fn pad<F: FnOnce()>(padding: Pad, children: F) -> Response<PadResponse> {
     padding.show(children)
 }
 
+#[cfg(feature = "text")]
 /// See [Text].
 #[track_caller]
 pub fn text<S: Into<Cow<'static, str>>>(size: f32, text: S) -> Response<TextResponse> {
     Text::new(size, text.into()).show()
 }
 
+#[cfg(feature = "text")]
 /// See [Text].
 #[track_caller]
 pub fn label<S: Into<Cow<'static, str>>>(text: S) -> Response<TextResponse> {
     Text::label(text.into()).show()
 }
 
+#[cfg(feature = "text")]
 /// See [TextBox].
 #[track_caller]
 pub fn textbox<'a, S: Into<&'a str>>(text: S) -> Response<TextBoxResponse> {

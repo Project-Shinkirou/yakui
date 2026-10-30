@@ -37,6 +37,7 @@ impl FontWidth {
     }
 }
 
+#[cfg(feature = "text")]
 impl From<cosmic_text::Stretch> for FontWidth {
     fn from(value: cosmic_text::Stretch) -> Self {
         match value {
@@ -53,6 +54,7 @@ impl From<cosmic_text::Stretch> for FontWidth {
     }
 }
 
+#[cfg(feature = "text")]
 impl From<FontWidth> for cosmic_text::Stretch {
     fn from(value: FontWidth) -> Self {
         match value {
@@ -81,6 +83,7 @@ pub enum FontStyle {
     Oblique,
 }
 
+#[cfg(feature = "text")]
 impl From<cosmic_text::Style> for FontStyle {
     fn from(value: cosmic_text::Style) -> Self {
         match value {
@@ -123,12 +126,14 @@ impl FontWeight {
     pub const BLACK: FontWeight = FontWeight(900);
 }
 
+#[cfg(feature = "text")]
 impl From<cosmic_text::Weight> for FontWeight {
     fn from(value: cosmic_text::Weight) -> Self {
         Self(value.0)
     }
 }
 
+#[cfg(feature = "text")]
 impl From<FontWeight> for cosmic_text::Weight {
     fn from(value: FontWeight) -> Self {
         Self(value.0)
@@ -148,6 +153,7 @@ pub enum FontFamily {
     Monospace,
 }
 
+#[cfg(feature = "text")]
 impl<'a> From<cosmic_text::Family<'a>> for FontFamily {
     fn from(value: cosmic_text::Family) -> Self {
         match value {
@@ -210,6 +216,7 @@ impl TextStyle {
         self.line_height_override.unwrap_or(self.font_size * 1.2)
     }
 
+    #[cfg(feature = "text")]
     pub fn to_metrics(&self, scale_factor: f32) -> cosmic_text::Metrics {
         cosmic_text::Metrics::new(
             (self.font_size * scale_factor).ceil(),
@@ -225,6 +232,7 @@ pub enum TextAlignment {
     End,
 }
 
+#[cfg(feature = "text")]
 impl From<TextAlignment> for Option<cosmic_text::Align> {
     fn from(value: TextAlignment) -> Self {
         match value {

@@ -20,15 +20,18 @@ pub mod clipboard;
 
 pub mod border;
 pub mod colors;
+#[cfg(feature = "text")]
 pub mod font;
 pub mod shapes;
 pub mod shorthand;
 pub mod style;
+#[cfg(feature = "text")]
 pub mod text_renderer;
 pub mod widgets;
 
 pub use self::shorthand::*;
 
+#[cfg(feature = "text")]
 pub use cosmic_text;
 
 #[doc(hidden)]

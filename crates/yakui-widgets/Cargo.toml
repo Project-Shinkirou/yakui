@@ -9,18 +9,21 @@ edition = "2021"
 [features]
 default = ["default-fonts"]
 
+# Built-in font storage, text rendering and widgets that contain text.
+text = ["dep:cosmic-text", "dep:sys-locale"]
+
 # Include built-in fonts.
-default-fonts = []
-system-fonts = ["cosmic-text/fontconfig"]
+default-fonts = ["text"]
+system-fonts = ["text", "cosmic-text/fontconfig"]
 
 [dependencies]
 yakui-core = { path = "../yakui-core", version = "0.3.0" }
 
-cosmic-text = { version = "0.19.0", default-features = false, features = [
+cosmic-text = { version = "0.19.0", optional = true, default-features = false, features = [
     "std",
     "swash",
 ] }
-sys-locale = "0.3.2"
+sys-locale = { version = "0.3.2", optional = true }
 
 log.workspace = true
 thunderdome.workspace = true

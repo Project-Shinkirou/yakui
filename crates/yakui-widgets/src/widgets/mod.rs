@@ -1,4 +1,5 @@
 mod align;
+#[cfg(feature = "text")]
 mod button;
 mod canvas;
 mod checkbox;
@@ -20,6 +21,7 @@ mod opaque;
 mod pad;
 mod panel;
 mod reflow;
+#[cfg(feature = "text")]
 mod render_text;
 mod round_rect;
 mod scoped;
@@ -28,13 +30,17 @@ mod slider;
 mod spacer;
 mod stack;
 mod state;
+#[cfg(feature = "text")]
 mod text;
+#[cfg(feature = "text")]
 mod textbox;
 mod trap;
 mod unconstrained_box;
+#[cfg(feature = "text")]
 mod window;
 
 pub use self::align::*;
+#[cfg(feature = "text")]
 pub use self::button::*;
 pub use self::canvas::*;
 pub use self::checkbox::*;
@@ -56,6 +62,7 @@ pub use self::opaque::*;
 pub use self::pad::*;
 pub use self::panel::*;
 pub use self::reflow::*;
+#[cfg(feature = "text")]
 pub use self::render_text::*;
 pub use self::round_rect::*;
 pub use self::scoped::*;
@@ -64,8 +71,11 @@ pub use self::slider::*;
 pub use self::spacer::*;
 pub use self::stack::*;
 pub use self::state::*;
+#[cfg(feature = "text")]
 pub use self::text::*;
+#[cfg(feature = "text")]
 pub use self::textbox::*;
 pub use self::trap::*;
 pub use self::unconstrained_box::*;
+#[cfg(feature = "text")]
 pub use self::window::*;
